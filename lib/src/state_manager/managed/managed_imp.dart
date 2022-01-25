@@ -1,6 +1,6 @@
-import '../typedefs.dart';
-import 'dispatcher.dart';
-import 'managed.dart';
+import 'package:man/src/state_manager/managed/dispatcher.dart';
+import 'package:man/src/state_manager/managed/managed.dart';
+import 'package:man/src/state_manager/typedefs.dart';
 
 class ManagedImpl<T> implements Managed<T> {
   ManagedImpl(this._value);

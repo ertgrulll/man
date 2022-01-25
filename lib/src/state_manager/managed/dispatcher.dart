@@ -1,4 +1,4 @@
-import '../typedefs.dart';
+import 'package:man/src/state_manager/typedefs.dart';
 
 /// General updater.
 class Dispatcher {

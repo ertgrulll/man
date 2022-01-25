@@ -1,5 +1,5 @@
-import '../typedefs.dart';
-import 'managed_imp.dart';
+import 'package:man/src/state_manager/managed/managed_imp.dart';
+import 'package:man/src/state_manager/typedefs.dart';
 
 abstract class Managed<T> {
   /// Creates a managed variable.

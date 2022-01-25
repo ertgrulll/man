@@ -1,28 +1,29 @@
 import 'package:flutter/material.dart';
 
-import 'man.dart';
-import 'managed/dispatcher.dart';
-import 'managed/managed.dart';
-import 'managed/managed_imp.dart';
-import 'typedefs.dart';
+import 'package:man/src/state_manager/managed/dispatcher.dart';
+import 'package:man/src/state_manager/managed/managed.dart';
+import 'package:man/src/state_manager/typedefs.dart';
 
-class ManImpl extends StatefulWidget implements Man {
-  const ManImpl(this.builder, {List<Managed>? bindings, Key? key})
-      : bindings = bindings ?? const [],
+class ManBuilder extends StatefulWidget {
+  const ManBuilder(
+    this.builder,
+    List<Managed>? bindings, [
+    Key? key,
+  ])  : bindings = bindings ?? const [],
         super(key: key);
 
   @override
-  _ManImplState createState() => _ManImplState();
+  _ManBuilderState createState() => _ManBuilderState();
 
   final ManagedBuilder builder;
   final List<Managed> bindings;
 }
 
-class _ManImplState extends State<ManImpl> {
+class _ManBuilderState extends State<ManBuilder> {
   late ManDispatch updateCallback;
 
   @override
-  initState() {
+  void initState() {
     updateCallback = (isOuter) {
       // Widget is not on screen, no need to update.
       if (!mounted) return;
@@ -43,7 +44,6 @@ class _ManImplState extends State<ManImpl> {
 
     if (widget.bindings.isNotEmpty) {
       for (final Managed binding in widget.bindings) {
-        (binding as ManagedImpl);
         binding.addListener(updateCallback);
       }
     } else {
