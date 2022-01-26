@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 
 class SizedRoute extends PageRouteBuilder<Widget> {
-  SizedRoute(this.page, this.axis, {this.curve = Curves.fastOutSlowIn})
-      : super(pageBuilder: (context, animation, secondaryAnimation) => page);
+  SizedRoute(this.page, this.axis, this.curve, Duration duration)
+      : super(
+          pageBuilder: (context, animation, secondaryAnimation) => page,
+          transitionDuration: duration,
+        );
 
   Widget page;
   Axis axis;

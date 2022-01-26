@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 
 class FadedRoute extends PageRouteBuilder<Widget> {
-  FadedRoute(Widget page, [this.curve = Curves.linear])
-      : super(pageBuilder: (context, animation, secondaryAnimation) => page);
+  FadedRoute(
+    Widget page,
+    this.curve,
+    Duration duration,
+  ) : super(
+          pageBuilder: (context, animation, secondaryAnimation) => page,
+          transitionDuration: duration,
+        );
 
-  Curve curve;
+  final Curve curve;
 
   @override
   Widget buildTransitions(

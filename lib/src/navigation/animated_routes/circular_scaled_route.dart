@@ -6,8 +6,14 @@ import 'package:flutter/material.dart';
 /// Circular route generator
 class CircularScaledRoute extends PageRouteBuilder<Widget> {
   /// Creates a route that animated growing in a circle.
-  CircularScaledRoute(Widget page, {this.alignment = Alignment.center})
-      : super(pageBuilder: (context, animation, secondaryAnimation) => page);
+  CircularScaledRoute(
+    Widget page,
+    Duration duration, {
+    this.alignment = Alignment.center,
+  }) : super(
+          pageBuilder: (context, animation, secondaryAnimation) => page,
+          transitionDuration: duration,
+        );
 
   /// Animation start point.
   Alignment alignment;

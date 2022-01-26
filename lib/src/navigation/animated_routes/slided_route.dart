@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 
 class SlidedRoute extends PageRouteBuilder<Widget> {
-  SlidedRoute(this.page, this.begin, [this.curve = Curves.fastOutSlowIn])
-      : super(pageBuilder: (context, animation, secondaryAnimation) => page);
+  SlidedRoute(this.page, this.begin, this.curve, Duration duration)
+      : super(
+          pageBuilder: (context, animation, secondaryAnimation) => page,
+          transitionDuration: duration,
+        );
 
   Widget page;
   Offset begin;

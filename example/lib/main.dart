@@ -10,9 +10,23 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Man.navigator.routes = ManRoutes(
+      {
+        'app': (s) => const MyApp(),
+        'route2': (s) => const Route2(),
+        'route2/:param1': (s) => Route2(param1: s[0]),
+        'route2/:param1/:param2': (s) => Route2(param1: s[0], param2: s[1]),
+        'route2/:param1/:profile': (s) => Route2(param1: s[0], param2: s[1]),
+        'route2/:param1/profile': (s) => Route2(param1: s[0]),
+      },
+      initialRoute: 'app',
+      unknown: 'route2',
+    );
+
     return MaterialApp(
-      home: const MyApp(),
-      navigatorKey: Man.key,
+      initialRoute: 'app',
+      navigatorKey: Man.navigator.key,
+      onGenerateRoute: Man.navigator.routeHandler,
     );
   }
 }
@@ -81,26 +95,66 @@ class _MyAppState extends State<MyApp> {
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: [
-                    _createRoutingButton(ManTransition.fade),
-                    _createRoutingButton(ManTransition.circularFromTop),
-                    _createRoutingButton(ManTransition.circularFromBottom),
-                    _createRoutingButton(ManTransition.circularFromTopRight),
-                    _createRoutingButton(ManTransition.circularFromTopLeft),
-                    _createRoutingButton(ManTransition.circularFromBottomRight),
-                    _createRoutingButton(ManTransition.circularFromBottomLeft),
-                    _createRoutingButton(ManTransition.circularFromCenter),
-                    _createRoutingButton(ManTransition.expandHorizontal),
-                    _createRoutingButton(ManTransition.expandVertical),
-                    _createRoutingButton(ManTransition.shrink),
-                    _createRoutingButton(ManTransition.grow),
-                    _createRoutingButton(ManTransition.toLeft),
-                    _createRoutingButton(ManTransition.toRight),
-                    _createRoutingButton(ManTransition.toTop),
-                    _createRoutingButton(ManTransition.toBottom),
-                    _createRoutingButton(ManTransition.toTopLeft),
-                    _createRoutingButton(ManTransition.toTopRight),
-                    _createRoutingButton(ManTransition.toBottomLeft),
-                    _createRoutingButton(ManTransition.toBottomRight),
+                    _createRoutingButton(const ManTransition(
+                      transition: ManTransitions.fade,
+                    )),
+                    _createRoutingButton(const ManTransition(
+                      transition: ManTransitions.circularFromTop,
+                    )),
+                    _createRoutingButton(const ManTransition(
+                      transition: ManTransitions.circularFromBottom,
+                    )),
+                    _createRoutingButton(const ManTransition(
+                      transition: ManTransitions.circularFromTopRight,
+                    )),
+                    _createRoutingButton(const ManTransition(
+                      transition: ManTransitions.circularFromTopLeft,
+                    )),
+                    _createRoutingButton(const ManTransition(
+                      transition: ManTransitions.circularFromBottomRight,
+                    )),
+                    _createRoutingButton(const ManTransition(
+                      transition: ManTransitions.circularFromBottomLeft,
+                    )),
+                    _createRoutingButton(const ManTransition(
+                      transition: ManTransitions.circularFromCenter,
+                    )),
+                    _createRoutingButton(const ManTransition(
+                      transition: ManTransitions.expandHorizontal,
+                    )),
+                    _createRoutingButton(const ManTransition(
+                      transition: ManTransitions.expandVertical,
+                    )),
+                    _createRoutingButton(const ManTransition(
+                      transition: ManTransitions.shrink,
+                    )),
+                    _createRoutingButton(const ManTransition(
+                      transition: ManTransitions.grow,
+                    )),
+                    _createRoutingButton(const ManTransition(
+                      transition: ManTransitions.toLeft,
+                    )),
+                    _createRoutingButton(const ManTransition(
+                      transition: ManTransitions.toRight,
+                    )),
+                    _createRoutingButton(const ManTransition(
+                      transition: ManTransitions.toTop,
+                    )),
+                    _createRoutingButton(const ManTransition(
+                      transition: ManTransitions.toBottom,
+                    )),
+                    _createRoutingButton(const ManTransition(
+                      transition: ManTransitions.toTopLeft,
+                    )),
+                    _createRoutingButton(const ManTransition(
+                      transition: ManTransitions.toTopRight,
+                    )),
+                    _createRoutingButton(const ManTransition(
+                      transition: ManTransitions.toBottomLeft,
+                    )),
+                    _createRoutingButton(const ManTransition(
+                      transition: ManTransitions.toBottomRight,
+                    )),
                   ],
                 ),
               ),
@@ -115,10 +169,10 @@ class _MyAppState extends State<MyApp> {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 12),
       child: ElevatedButton(
-        child: Text("$transition"),
+        child: Text("${transition.transition}"),
         onPressed: () {
-          Man.push(
-            const Route2(),
+          Man.pushNamed(
+            'route2/12345/profile',
             transition: transition,
           );
         },
@@ -128,7 +182,10 @@ class _MyAppState extends State<MyApp> {
 }
 
 class Route2 extends StatelessWidget {
-  const Route2({Key? key}) : super(key: key);
+  const Route2({this.param1, this.param2, Key? key}) : super(key: key);
+
+  final String? param1;
+  final String? param2;
 
   @override
   Widget build(BuildContext context) {
@@ -145,9 +202,9 @@ class Route2 extends StatelessWidget {
         height: MediaQuery.of(context).size.height,
         color: Colors.blue,
         alignment: Alignment.center,
-        child: const Text(
-          "Route 2",
-          style: TextStyle(
+        child: Text(
+          "Uri params:\nparam1: $param1, param2: $param2",
+          style: const TextStyle(
             color: Colors.white,
             fontSize: 25,
           ),

@@ -3,10 +3,14 @@ import 'package:flutter/material.dart';
 class ScaledRoute extends PageRouteBuilder<Widget> {
   ScaledRoute(
     Widget page, {
+    required Duration duration,
+    required this.curve,
     this.begin = 0.0,
     this.end = 1.0,
-    this.curve = Curves.linear,
-  }) : super(pageBuilder: (context, animation, secondaryAnimation) => page);
+  }) : super(
+          pageBuilder: (context, animation, secondaryAnimation) => page,
+          transitionDuration: duration,
+        );
 
   double begin;
   double end;

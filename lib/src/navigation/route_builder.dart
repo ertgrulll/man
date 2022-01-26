@@ -6,69 +6,160 @@ import 'package:man/src/navigation/animated_routes/scaled_route.dart';
 import 'package:man/src/navigation/animated_routes/sized_route.dart';
 import 'package:man/src/navigation/animated_routes/slided_route.dart';
 import 'package:man/src/navigation/constants.dart';
+import 'package:man/src/navigation/model/man_transition.dart';
 
 extension RouteBuilder on ManTransition {
-  PageRouteBuilder<Widget> route(Widget page, Curve curve) {
-    switch (this) {
-      case ManTransition.fade:
-        return FadedRoute(page, curve);
+  PageRouteBuilder<Widget> route(Widget page) {
+    switch (transition) {
+      case ManTransitions.fade:
+        return FadedRoute(
+          page,
+          curve,
+          duration,
+        );
 
-      case ManTransition.toRight:
-        return SlidedRoute(page, const Offset(-1, 0), curve);
+      case ManTransitions.toRight:
+        return SlidedRoute(
+          page,
+          const Offset(-1, 0),
+          curve,
+          duration,
+        );
 
-      case ManTransition.toLeft:
-        return SlidedRoute(page, const Offset(1, 0), curve);
+      case ManTransitions.toLeft:
+        return SlidedRoute(
+          page,
+          const Offset(1, 0),
+          curve,
+          duration,
+        );
 
-      case ManTransition.toBottom:
-        return SlidedRoute(page, const Offset(0, -1), curve);
+      case ManTransitions.toBottom:
+        return SlidedRoute(
+          page,
+          const Offset(0, -1),
+          curve,
+          duration,
+        );
 
-      case ManTransition.toTop:
-        return SlidedRoute(page, const Offset(0, 1), curve);
+      case ManTransitions.toTop:
+        return SlidedRoute(
+          page,
+          const Offset(0, 1),
+          curve,
+          duration,
+        );
 
-      case ManTransition.toBottomRight:
-        return SlidedRoute(page, const Offset(-1, -1), curve);
+      case ManTransitions.toBottomRight:
+        return SlidedRoute(
+          page,
+          const Offset(-1, -1),
+          curve,
+          duration,
+        );
 
-      case ManTransition.toBottomLeft:
-        return SlidedRoute(page, const Offset(1, -1), curve);
+      case ManTransitions.toBottomLeft:
+        return SlidedRoute(
+          page,
+          const Offset(1, -1),
+          curve,
+          duration,
+        );
 
-      case ManTransition.toTopRight:
-        return SlidedRoute(page, const Offset(-1, 1), curve);
+      case ManTransitions.toTopRight:
+        return SlidedRoute(
+          page,
+          const Offset(-1, 1),
+          curve,
+          duration,
+        );
 
-      case ManTransition.toTopLeft:
-        return SlidedRoute(page, const Offset(1, 1), curve);
+      case ManTransitions.toTopLeft:
+        return SlidedRoute(
+          page,
+          const Offset(1, 1),
+          curve,
+          duration,
+        );
 
-      case ManTransition.shrink:
-        return ScaledRoute(page, begin: 2, curve: curve);
+      case ManTransitions.shrink:
+        return ScaledRoute(
+          page,
+          duration: duration,
+          begin: 2,
+          curve: curve,
+        );
 
-      case ManTransition.grow:
-        return ScaledRoute(page, curve: curve);
+      case ManTransitions.grow:
+        return ScaledRoute(
+          page,
+          duration: duration,
+          curve: curve,
+        );
 
-      case ManTransition.circularFromCenter:
-        return CircularScaledRoute(page);
+      case ManTransitions.circularFromCenter:
+        return CircularScaledRoute(
+          page,
+          duration,
+        );
 
-      case ManTransition.circularFromBottom:
-        return CircularScaledRoute(page, alignment: Alignment.bottomCenter);
+      case ManTransitions.circularFromBottom:
+        return CircularScaledRoute(
+          page,
+          duration,
+          alignment: Alignment.bottomCenter,
+        );
 
-      case ManTransition.circularFromTop:
-        return CircularScaledRoute(page, alignment: Alignment.topCenter);
+      case ManTransitions.circularFromTop:
+        return CircularScaledRoute(
+          page,
+          duration,
+          alignment: Alignment.topCenter,
+        );
 
-      case ManTransition.circularFromTopRight:
-        return CircularScaledRoute(page, alignment: Alignment.topRight);
+      case ManTransitions.circularFromTopRight:
+        return CircularScaledRoute(
+          page,
+          duration,
+          alignment: Alignment.topRight,
+        );
 
-      case ManTransition.circularFromTopLeft:
-        return CircularScaledRoute(page, alignment: Alignment.topLeft);
+      case ManTransitions.circularFromTopLeft:
+        return CircularScaledRoute(
+          page,
+          duration,
+          alignment: Alignment.topLeft,
+        );
 
-      case ManTransition.circularFromBottomRight:
-        return CircularScaledRoute(page, alignment: Alignment.bottomRight);
+      case ManTransitions.circularFromBottomRight:
+        return CircularScaledRoute(
+          page,
+          duration,
+          alignment: Alignment.bottomRight,
+        );
 
-      case ManTransition.circularFromBottomLeft:
-        return CircularScaledRoute(page, alignment: Alignment.bottomLeft);
+      case ManTransitions.circularFromBottomLeft:
+        return CircularScaledRoute(
+          page,
+          duration,
+          alignment: Alignment.bottomLeft,
+        );
 
-      case ManTransition.expandVertical:
-        return SizedRoute(page, Axis.vertical, curve: curve);
+      case ManTransitions.expandVertical:
+        return SizedRoute(
+          page,
+          Axis.vertical,
+          curve,
+          duration,
+        );
 
-      case ManTransition.expandHorizontal:
-        return SizedRoute(page, Axis.horizontal, curve: curve);
+      case ManTransitions.expandHorizontal:
+        return SizedRoute(
+          page,
+          Axis.horizontal,
+          curve,
+          duration,
+        );
 
       default:
         throw Exception('Unknown transition type');

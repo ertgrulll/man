@@ -7,7 +7,12 @@ const keyNotSet =
     "in documentation.\n Navigation documantation: "
     "https://url.com";
 
-enum ManTransition {
+const routesNotSet = "Routes not set...";
+
+const unknownRouteNotSet = "Unknown route not set...";
+
+/// Transition types, defines the animation type for navigation.
+enum ManTransitions {
   /// Fades page in.
   fade,
 
