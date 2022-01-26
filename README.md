@@ -37,7 +37,7 @@
 - [ ] List - Map - Set implementation on [Managed](https://github.com/ertgrulll/man/blob/master/lib/src/state_manager/managed/managed_imp.dart)
 - [x] Navigation using Navigator Key
 - [x] Enter page transitions (Created 20 transition)
-- [ ] Named routes
+- [ ] Named routes ***In Progress***
 - [ ] Route transitions to animating both enter and exit pages 
 - [ ] Transition gifs 
 - [ ]  Code samples for readme
