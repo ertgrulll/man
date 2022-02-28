@@ -87,31 +87,36 @@ ___Man___ updates your UI's related section only, this why it's performant. Decl
 ```dart
 var myVariable = 'Maan this is awesome'.man;
 
-// Any where in your code update variable, also related widget will update.
+// Anywhere in your code update variable, also related widget will update.
 myVariable.value = 'Maaaann this is really awsome';
 
 @override
   Widget  build(BuildContext  context) {
     return  Man(
-	  builder: () => Text(myVariable),
+	    builder: () => Text(myVariable),
  	);
-  }
+}
 ...
 ```
 Easy right? 
 
 >Boring tech: Man uses custom-implemented callbacks to update the widget tree. Basically it works like ValueNotifier and ValueListenableBuilder in the broader scope. Also `Man` takes an optional bindings parameter as a `List`, this ensures the relevant `Man` is updated only when the binding variable changes.
 
-See [state management section of the example project](https://github.com/ertgrulll/man/blob/master/example/lib/navigation.dart) to complete usage.
+See [state management section of the example project](https://github.com/ertgrulll/man/blob/master/example/lib/state_management.dart) to complete usage.
 
 ### Navigation
-___Man___ has ==20 different== navigation transition. Transitions can be found at [Transition Definitions](https://github.com/ertgrulll/man/blob/master/lib/src/navigation/transition_definitions.dart) page.
+___Man___ __has 20 different__ navigation transition. Transitions can be found at [Transition Definitions](https://github.com/ertgrulll/man/blob/master/lib/src/navigation/transition_definitions.dart) page.
 
  Navigation methods accepts a widget and optional transition parameter to creating transition between pages. Method names same as Flutter's names, except of `Man.pushAndRemoveAll` and `Man.pushNamedAndRemoveAll`.  
 
 For example, this is equal with Flutter's push method:
 ```dart
-  Man.push(Home(), transition: ManTransitions.circularFromCenter);	
+  Man.push(Home());	
+```
+
+Navigation applying a transition:
+```dart
+  Man.push(Home(), transition: ManTransitions.circularFromCenter);
 ```
 
 See [navigation section of the example project](https://github.com/ertgrulll/man/blob/master/example/lib/navigation.dart) to complete usage.
