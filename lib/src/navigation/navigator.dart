@@ -68,7 +68,7 @@ class NavigatorImpl implements ManNavigator {
       int trustScore = 0;
 
       // The best matched route
-      MapEntry<String, Widget Function(List<String>)>? definedRoute;
+      MapEntry<String, Widget Function(List<Object>)>? definedRoute;
 
       mainLoop:
       for (int i = 0; i < definedRoutes.length; i++) {

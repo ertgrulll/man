@@ -16,7 +16,7 @@ class ManagedImpl<T> implements Managed<T> {
   set value(T newVal) {
     if (_value != newVal) {
       _value = newVal;
-      notifyListeners();
+      notify();
     }
   }
 
@@ -26,7 +26,7 @@ class ManagedImpl<T> implements Managed<T> {
   }
 
   @override
-  void notifyListeners() {
+  void notify() {
     for (final listener in _listeners) {
       listener(false);
     }

@@ -1,4 +1,6 @@
 import 'package:man/src/state_manager/managed/managed_imp.dart';
+import 'package:man/src/state_manager/managed/types/managed_list.dart';
+import 'package:man/src/state_manager/managed/types/managed_map.dart';
 import 'package:man/src/state_manager/typedefs.dart';
 
 abstract class Managed<T> {
@@ -31,13 +33,23 @@ abstract class Managed<T> {
   /// For example, if you have a variable that is a list of items, you can
   /// update only one item in the list without changing the whole list and
   /// trigger a re-render by calling this method.
-  void notifyListeners();
+  void notify();
 
   /// Releases all resources used by this variable.
   void dispose();
 }
 
-/// A shortcut for creating [Managed] variable.
+/// Shortcut for creating [Managed] variable.
 extension ManagedShortcut<T> on T {
   Managed<T> get man => Managed<T>(this);
+}
+
+/// Shortcut for creating [Managed] variable.
+extension ManagedListShortcut<T> on List<T> {
+  ManagedList<T> get man => ManagedList<T>(this);
+}
+
+/// Shortcut for creating [Managed] variable.
+extension ManagedMapShortcut<K, V> on Map<K, V> {
+  ManagedMap<K, V> get man => ManagedMap<K, V>(this);
 }
