@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:man/src/navigation/constants.dart';
+import 'package:man/man.dart';
 
 /// Transition model.
 class ManTransition {

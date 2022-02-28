@@ -5,8 +5,8 @@ import 'package:man/src/navigation/animated_routes/faded_route.dart';
 import 'package:man/src/navigation/animated_routes/scaled_route.dart';
 import 'package:man/src/navigation/animated_routes/sized_route.dart';
 import 'package:man/src/navigation/animated_routes/slided_route.dart';
-import 'package:man/src/navigation/constants.dart';
 import 'package:man/src/navigation/model/man_transition.dart';
+import 'package:man/src/navigation/transition_definitions.dart';
 
 extension RouteBuilder on ManTransition {
   PageRouteBuilder<Widget> route(Widget page) {

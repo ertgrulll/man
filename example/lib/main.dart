@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:man/man.dart';
 
 import 'package:example/dumb_route.dart';
