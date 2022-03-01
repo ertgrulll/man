@@ -20,34 +20,37 @@ class ManBuilder extends StatefulWidget {
 }
 
 class _ManBuilderState extends State<ManBuilder> {
-  late ManDispatch updateCallback;
+  late ManDispatch _updateCallback;
+  late Widget _child = widget.builder();
 
   @override
   void initState() {
-    updateCallback = (isOuter) {
+    _updateCallback = (isOuter) {
       // Widget is not on screen, no need to update.
       if (!mounted) return;
 
       // Not binded to a managed.
       if (widget.bindings.isEmpty) {
-        setState(() {});
-      }
-
-      // Binded to a managed
-      else {
+        setState(() {
+          _child = widget.builder();
+        });
+      } else {
+        // Binded to a managed
         // It's a general update. Not related with this Man.
         if (isOuter) return;
 
-        setState(() {});
+        setState(() {
+          _child = widget.builder();
+        });
       }
     };
 
     if (widget.bindings.isNotEmpty) {
       for (final Managed binding in widget.bindings) {
-        binding.addListener(updateCallback);
+        binding.addListener(_updateCallback);
       }
     } else {
-      Dispatcher().addListener(updateCallback);
+      Dispatcher().addListener(_updateCallback);
     }
 
     super.initState();
@@ -57,10 +60,10 @@ class _ManBuilderState extends State<ManBuilder> {
   void dispose() {
     if (widget.bindings.isNotEmpty) {
       for (final binding in widget.bindings) {
-        binding.removeListener(updateCallback);
+        binding.removeListener(_updateCallback);
       }
     } else {
-      Dispatcher().removeListener(updateCallback);
+      Dispatcher().removeListener(_updateCallback);
     }
 
     super.dispose();
@@ -68,6 +71,6 @@ class _ManBuilderState extends State<ManBuilder> {
 
   @override
   Widget build(BuildContext context) {
-    return widget.builder();
+    return _child;
   }
 }

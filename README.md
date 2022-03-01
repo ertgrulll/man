@@ -51,7 +51,7 @@
 
 ## About The Project
 
-Reactive state management and navigation library. Easy to use, not requires fancy things. Not dependent any other package. 
+Reactive state management and navigation library. Easy to use, not requires fancy things. Not dependent any other package. 'Man' name comes from 'manager'.
 
 <p  align="right">(<a  href="#top">back to top</a>)</p>
 
@@ -174,7 +174,7 @@ Don't forget to give the project a star! Thanks again!
 3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
-6. 
+
 <p  align="right">(<a  href="#top">back to top</a>)</p>
 
 ## License

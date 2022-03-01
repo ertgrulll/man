@@ -11,7 +11,9 @@ extension ManNavigator on Man {
   /// Pop the top-most route off the navigator.
   void pop() {
     assert(_navigator.innerKey != null, keyNotSet);
-    _navigator.innerKey!.currentState!.pop();
+    if (_navigator.innerKey!.currentState!.canPop()) {
+      _navigator.innerKey!.currentState!.pop();
+    }
   }
 
   /// Whether the navigator can be popped.
