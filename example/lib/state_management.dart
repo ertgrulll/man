@@ -7,7 +7,7 @@ class StateManagement extends StatelessWidget {
   StateManagement({Key? key}) : super(key: key);
   final x = 5.man;
   final y = 3.man;
-  final map = {1: '1', 2: '2', 3: '3'}.man;
+  final map = {1: 1, 2: 2, 3: 3}.man;
   final list = [1, 2, 3].man;
 
   @override
@@ -97,7 +97,7 @@ class StateManagement extends StatelessWidget {
                 onPressed: () {
                   Random rand = Random();
                   final val = rand.nextInt(100);
-                  map[val] = val.toString();
+                  map[val] = val;
                   map.remove(map.keys.first);
                 },
               ),
@@ -112,8 +112,8 @@ class StateManagement extends StatelessWidget {
                   color: Colors.orange,
                   child: Column(
                     children: [
-                      const Text("List test"),
-                      Text(list.value.toString()),
+                      const Text("map test 2"),
+                      Text(map.value.toString()),
                     ],
                   ),
                 ),
@@ -122,9 +122,10 @@ class StateManagement extends StatelessWidget {
                 child: const Text("Update list"),
                 onPressed: () {
                   Random rand = Random();
-                  final val = rand.nextInt(100);
-                  list.add(val);
-                  list.removeAt(0);
+                  int val = rand.nextInt(100);
+                  map[val] = ++val;
+
+                  map.remove(map.keys.first);
                 },
               ),
             ],

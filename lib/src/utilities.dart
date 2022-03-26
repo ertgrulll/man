@@ -12,9 +12,13 @@ extension MediaQueryShortcuts on BuildContext {
 
   Brightness get platformBrightness => MediaQuery.of(this).platformBrightness;
   Brightness get brightness => Theme.of(this).brightness;
-  bool get isDarkMode =>
+
+  bool get isDarkMode => Theme.of(this).brightness == Brightness.dark;
+  bool get isLightMode => Theme.of(this).brightness == Brightness.dark;
+
+  bool get isPlatformDark =>
       MediaQuery.of(this).platformBrightness == Brightness.dark;
-  bool get isLightMode =>
+  bool get isPlatformLight =>
       MediaQuery.of(this).platformBrightness == Brightness.light;
 
   BottomNavigationBarThemeData get bottomNavTheme =>
