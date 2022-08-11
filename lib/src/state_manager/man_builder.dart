@@ -57,6 +57,15 @@ class _ManBuilderState extends State<ManBuilder> {
   }
 
   @override
+  void didUpdateWidget(ManBuilder oldWidget) {
+    if (oldWidget.builder != widget.builder) {
+      _child = widget.builder();
+    }
+
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
   void dispose() {
     if (widget.bindings.isNotEmpty) {
       for (final binding in widget.bindings) {
